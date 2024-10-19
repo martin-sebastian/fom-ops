@@ -2,6 +2,8 @@
 	import Counter from './Counter.svelte';
 	import welcome from '$lib/images/svelte-welcome.webp';
 	import welcome_fallback from '$lib/images/svelte-welcome.png';
+	import martin from '$lib/images/martin-sebastian.jpg';
+	import * as Avatar from '$lib/components/ui/avatar';
 </script>
 
 <svelte:head>
@@ -11,7 +13,11 @@
 
 <section>
 	<h1>
-		<span class="welcome">
+		<span class="welcome rounded-xl bg-gray-100 shadow-xl dark:bg-gray-900">
+			<Avatar.Root>
+				<Avatar.Image src={martin} alt="Martin Sebastian" />
+				<Avatar.Fallback>MS</Avatar.Fallback>
+			</Avatar.Root>
 			<picture>
 				<source srcset={welcome} type="image/webp" />
 				<img src={welcome_fallback} alt="Welcome" />

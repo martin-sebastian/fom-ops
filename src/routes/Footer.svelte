@@ -1,25 +1,42 @@
 <script>
-	import github from '$lib/images/github.svg';
+	import github from '$lib/images/github-fill.svg';
+	import linkedin from '$lib/images/linkedin-box-fill.svg';
+	import twitter from '$lib/images/twitter-x-fill.svg';
+	import behance from '$lib/images/behance-fill.svg';
+	import dribbble from '$lib/images/dribbble-fill.svg';
 </script>
 
-<footer class="border-t border-gray-200 py-12 text-center">
-	<p>FomOps by <a href="https://martinsebastian.co" target="_blank">martin sebastian</a></p>
+<footer
+	class="flex flex-row justify-center gap-4 border-t border-gray-200 py-1 dark:border-gray-800"
+>
 	<div class="corner">
 		<a href="https://github.com/martin-sebastian">
-			<img src={github} alt="GitHub" />
+			<img class="dark:invert" src={github} alt="GitHub" />
+		</a>
+	</div>
+	<div class="corner">
+		<a href="https://www.linkedin.com/in/martinsebastian73/">
+			<img class="dark:invert" src={linkedin} alt="LinkedIn" />
+		</a>
+	</div>
+	<div class="corner">
+		<a href="https://x.com/martisebastian">
+			<img class="dark:invert" src={twitter} alt="Twitter X" />
+		</a>
+	</div>
+	<div class="corner">
+		<a href="https://www.behance.net/martinsebastian">
+			<img class="dark:invert" src={behance} alt="Behance" />
+		</a>
+	</div>
+	<div class="corner">
+		<a href="https://dribbble.com/msebastianco">
+			<img class="dark:invert" src={dribbble} alt="Dribbble" />
 		</a>
 	</div>
 </footer>
 
 <style>
-	footer {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		padding: 12px;
-	}
-
 	footer a {
 		font-weight: bold;
 	}
@@ -44,7 +61,7 @@
 
 	@media (min-width: 480px) {
 		footer {
-			padding: 12px 0;
+			padding: 2px 0;
 		}
 	}
 </style>

@@ -1,38 +1,41 @@
 <script>
 	import { page } from '$app/stores';
-	import logo from '$lib/images/svelte-logo.svg';
+	import logo from '$lib/images/ms-logo.svg';
 	import Sun from 'svelte-radix/Sun.svelte';
 	import Moon from 'svelte-radix/Moon.svelte';
 	import { toggleMode } from 'mode-watcher';
 	import { Button } from '$lib/components/ui/button/index';
 </script>
 
-<header class="border-b border-gray-200 py-1 text-center shadow-sm">
+<header class="border-b border-gray-200 py-1 text-center shadow-sm dark:border-gray-800">
 	<div class="corner">
 		<a href="https://kit.svelte.dev">
-			<img src={logo} alt="SvelteKit" />
+			<img class="dark:invert" src={logo} alt="Martin Sebastian" />
 		</a>
 	</div>
 
 	<nav>
-		<svg viewBox="0 0 2 3" aria-hidden="true">
+		<svg viewBox="0 0 2 3" aria-hidden="true" class="dark:invert">
 			<path d="M0,0 L1,2 C1.5,3 1.5,3 2,3 L2,0 Z" />
 		</svg>
-		<ul>
+		<ul class="dark:invert">
 			<li aria-current={$page.url.pathname === '/' ? 'page' : undefined}>
-				<a href="/">Home</a>
+				<a class="dark:invert" href="/">Home</a>
 			</li>
 			<li aria-current={$page.url.pathname === '/about' ? 'page' : undefined}>
-				<a href="/about">About</a>
+				<a class="dark:invert" href="/about">About</a>
 			</li>
 			<li aria-current={$page.url.pathname.startsWith('/levels') ? 'page' : undefined}>
-				<a href="/levels">levels</a>
+				<a class="dark:invert" href="/levels">levels</a>
 			</li>
 			<li aria-current={$page.url.pathname === '/toggle' ? 'page' : undefined}>
-				<a href="/toggle">Toggle</a>
+				<a class="dark:invert" href="/toggle">Toggle</a>
+			</li>
+			<li aria-current={$page.url.pathname === '/payments' ? 'page' : undefined}>
+				<a class="dark:invert" href="/payments">Payments</a>
 			</li>
 		</ul>
-		<svg viewBox="0 0 2 3" aria-hidden="true">
+		<svg viewBox="0 0 2 3" aria-hidden="true" class="dark:invert">
 			<path d="M0,0 L0,3 C0.5,3 0.5,3 1,2 L2,0 Z" />
 		</svg>
 	</nav>
