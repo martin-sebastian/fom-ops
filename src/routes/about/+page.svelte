@@ -1,3 +1,7 @@
+<script lang="ts">
+	import { Button } from '$lib/components/ui/button';
+</script>
+
 <svelte:head>
 	<title>About</title>
 	<meta name="description" content="About this app" />
@@ -12,6 +16,7 @@
 	</p>
 
 	<pre>npm create svelte@latest</pre>
+	<Button>Click me</Button>
 
 	<p>
 		The page you're looking at is purely static HTML, with no client-side interactivity needed.

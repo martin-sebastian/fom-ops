@@ -1,10 +1,13 @@
 <script>
 	import { page } from '$app/stores';
 	import logo from '$lib/images/svelte-logo.svg';
-	import github from '$lib/images/github.svg';
+	import Sun from 'svelte-radix/Sun.svelte';
+	import Moon from 'svelte-radix/Moon.svelte';
+	import { toggleMode } from 'mode-watcher';
+	import { Button } from '$lib/components/ui/button/index';
 </script>
 
-<header>
+<header class="border-b border-gray-200 py-1 text-center shadow-sm">
 	<div class="corner">
 		<a href="https://kit.svelte.dev">
 			<img src={logo} alt="SvelteKit" />
@@ -22,8 +25,11 @@
 			<li aria-current={$page.url.pathname === '/about' ? 'page' : undefined}>
 				<a href="/about">About</a>
 			</li>
-			<li aria-current={$page.url.pathname.startsWith('/sverdle') ? 'page' : undefined}>
-				<a href="/sverdle">Sverdle</a>
+			<li aria-current={$page.url.pathname.startsWith('/levels') ? 'page' : undefined}>
+				<a href="/levels">levels</a>
+			</li>
+			<li aria-current={$page.url.pathname === '/toggle' ? 'page' : undefined}>
+				<a href="/toggle">Toggle</a>
 			</li>
 		</ul>
 		<svg viewBox="0 0 2 3" aria-hidden="true">
@@ -31,10 +37,16 @@
 		</svg>
 	</nav>
 
-	<div class="corner">
-		<a href="https://github.com/sveltejs/kit">
-			<img src={github} alt="GitHub" />
-		</a>
+	<div class="theme-toggle flex pr-2 pt-1">
+		<Button on:click={toggleMode} variant="outline" size="icon">
+			<Sun
+				class="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0"
+			/>
+			<Moon
+				class="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100"
+			/>
+			<span class="sr-only">Toggle theme</span>
+		</Button>
 	</div>
 </header>
 
@@ -44,6 +56,13 @@
 		justify-content: space-between;
 	}
 
+	.theme-toggle {
+		width: 3em;
+		height: 3em;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
 	.corner {
 		width: 3em;
 		height: 3em;
