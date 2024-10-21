@@ -43,6 +43,7 @@
 	"dependencies": {
 		"lucide-svelte": "^0.453.0",
 		"mode-watcher": "^0.4.1",
+		"pocketbase": "^0.21.5",
 		"svelte-headless-table": "^0.18.2"
 	}
 }

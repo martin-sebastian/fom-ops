@@ -7,30 +7,30 @@
 </script>
 
 <footer
-	class="flex flex-row justify-center gap-4 border-t border-gray-200 py-1 dark:border-gray-800"
+	class="flex flex-row justify-center gap-0 border-t border-gray-200 py-1 dark:border-gray-800"
 >
 	<div class="corner">
-		<a href="https://github.com/martin-sebastian">
+		<a href="https://github.com/martin-sebastian" target="_blank">
 			<img class="dark:invert" src={github} alt="GitHub" />
 		</a>
 	</div>
 	<div class="corner">
-		<a href="https://www.linkedin.com/in/martinsebastian73/">
+		<a href="https://www.linkedin.com/in/martinsebastian73/" target="_blank">
 			<img class="dark:invert" src={linkedin} alt="LinkedIn" />
 		</a>
 	</div>
 	<div class="corner">
-		<a href="https://x.com/martisebastian">
+		<a href="https://x.com/martisebastian" target="_blank">
 			<img class="dark:invert" src={twitter} alt="Twitter X" />
 		</a>
 	</div>
 	<div class="corner">
-		<a href="https://www.behance.net/martinsebastian">
+		<a href="https://www.behance.net/martinsebastian" target="_blank">
 			<img class="dark:invert" src={behance} alt="Behance" />
 		</a>
 	</div>
 	<div class="corner">
-		<a href="https://dribbble.com/msebastianco">
+		<a href="https://dribbble.com/msebastianco" target="_blank">
 			<img class="dark:invert" src={dribbble} alt="Dribbble" />
 		</a>
 	</div>
@@ -54,9 +54,13 @@
 	}
 
 	.corner img {
-		width: 2em;
-		height: 2em;
+		width: 1.5em;
+		height: 1.5em;
 		object-fit: contain;
+		opacity: 0.3;
+	}
+	.corner img:hover {
+		opacity: 1;
 	}
 
 	@media (min-width: 480px) {

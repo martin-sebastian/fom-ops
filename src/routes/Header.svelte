@@ -3,45 +3,47 @@
 	import logo from '$lib/images/ms-logo.svg';
 	import Sun from 'svelte-radix/Sun.svelte';
 	import Moon from 'svelte-radix/Moon.svelte';
+	import martin from '$lib/images/martin-sebastian.jpg';
+	import * as Avatar from '$lib/components/ui/avatar';
 	import { toggleMode } from 'mode-watcher';
 	import { Button } from '$lib/components/ui/button/index';
 </script>
 
 <header class="border-b border-gray-200 py-1 text-center shadow-sm dark:border-gray-800">
 	<div class="corner">
-		<a href="https://kit.svelte.dev">
-			<img class="dark:invert" src={logo} alt="Martin Sebastian" />
+		<a href="/">
+			<img class="dark:invert" src={logo} alt="MartinSebastianCo" />
 		</a>
 	</div>
-
-	<nav>
-		<svg viewBox="0 0 2 3" aria-hidden="true" class="dark:invert">
-			<path d="M0,0 L1,2 C1.5,3 1.5,3 2,3 L2,0 Z" />
-		</svg>
-		<ul class="dark:invert">
-			<li aria-current={$page.url.pathname === '/' ? 'page' : undefined}>
-				<a class="dark:invert" href="/">Home</a>
-			</li>
-			<li aria-current={$page.url.pathname === '/about' ? 'page' : undefined}>
-				<a class="dark:invert" href="/about">About</a>
-			</li>
-			<li aria-current={$page.url.pathname.startsWith('/levels') ? 'page' : undefined}>
-				<a class="dark:invert" href="/levels">levels</a>
-			</li>
-			<li aria-current={$page.url.pathname === '/toggle' ? 'page' : undefined}>
-				<a class="dark:invert" href="/toggle">Toggle</a>
-			</li>
-			<li aria-current={$page.url.pathname === '/payments' ? 'page' : undefined}>
-				<a class="dark:invert" href="/payments">Payments</a>
-			</li>
-		</ul>
-		<svg viewBox="0 0 2 3" aria-hidden="true" class="dark:invert">
-			<path d="M0,0 L0,3 C0.5,3 0.5,3 1,2 L2,0 Z" />
-		</svg>
-	</nav>
-
-	<div class="theme-toggle flex pr-2 pt-1">
-		<Button on:click={toggleMode} variant="outline" size="icon">
+	<div>
+		<nav>
+			<ul class="dark:invert">
+				<li aria-current={$page.url.pathname === '/' ? 'page' : undefined}>
+					<a class="dark:invert" href="/">Home</a>
+				</li>
+				<li aria-current={$page.url.pathname === '/about' ? 'page' : undefined}>
+					<a class="dark:invert" href="/about">About</a>
+				</li>
+				<li aria-current={$page.url.pathname === '/profile' ? 'page' : undefined}>
+					<a class="dark:invert" href="/profile">Profile</a>
+				</li>
+				<li aria-current={$page.url.pathname === '/inventory' ? 'page' : undefined}>
+					<a class="dark:invert" href="/inventory">Inventory</a>
+				</li>
+				<li aria-current={$page.url.pathname.startsWith('/levels') ? 'page' : undefined}>
+					<a class="dark:invert" href="/levels">levels</a>
+				</li>
+				<li aria-current={$page.url.pathname === '/toggle' ? 'page' : undefined}>
+					<a class="dark:invert" href="/toggle">Toggle</a>
+				</li>
+				<li aria-current={$page.url.pathname === '/payments' ? 'page' : undefined}>
+					<a class="dark:invert" href="/payments">Payments</a>
+				</li>
+			</ul>
+		</nav>
+	</div>
+	<div class="theme-toggle flex pr-2">
+		<Button class="mx-2" on:click={toggleMode} variant="outline" size="icon">
 			<Sun
 				class="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0"
 			/>
@@ -50,6 +52,10 @@
 			/>
 			<span class="sr-only">Toggle theme</span>
 		</Button>
+		<Avatar.Root>
+			<Avatar.Image src={martin} alt="Martin Sebastian" />
+			<Avatar.Fallback>MS</Avatar.Fallback>
+		</Avatar.Root>
 	</div>
 </header>
 
@@ -60,7 +66,7 @@
 	}
 
 	.theme-toggle {
-		width: 3em;
+		width: auto;
 		height: 3em;
 		display: flex;
 		align-items: center;
@@ -70,7 +76,6 @@
 		width: 3em;
 		height: 3em;
 	}
-
 	.corner a {
 		display: flex;
 		align-items: center;
@@ -87,8 +92,7 @@
 
 	nav {
 		display: flex;
-		justify-content: center;
-		--background: rgba(255, 255, 255, 0.7);
+		justify-content: space-evenly;
 	}
 
 	svg {
