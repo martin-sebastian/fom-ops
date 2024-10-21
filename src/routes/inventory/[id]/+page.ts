@@ -8,7 +8,7 @@ export const load: PageLoad = async ({ params }) => {
 
 	try {
 		const vehicle = await pb.collection('vehicles').getOne(id, {
-			expand: 'vehicle_images,vehicle_attributes,vehicle_program,vehicle_program_items'
+			expand: 'vehicle_images,vehicle_attributes,vehicle_pricing'
 		});
 
 		console.log('Fetched vehicle:', JSON.stringify(vehicle, null, 2));
@@ -17,8 +17,7 @@ export const load: PageLoad = async ({ params }) => {
 			vehicle,
 			images: vehicle.expand?.vehicle_images || [],
 			attributes: vehicle.expand?.vehicle_attributes || [],
-			program: vehicle.expand?.vehicle_program || null,
-			programItems: vehicle.expand?.vehicle_program?.expand?.vehicle_program_items || []
+			pricing: vehicle.expand?.vehicle_pricing || []
 		};
 	} catch (err) {
 		console.error('Error fetching vehicle:', err);

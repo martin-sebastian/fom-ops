@@ -11,19 +11,10 @@ export interface Attribute {
 	name: string;
 	value: string;
 }
-
-export interface ProgramItem {
-	id: string;
-	program_name: string;
-	program_value: number;
-}
-
-export interface Program {
+export interface PriceItem {
 	id: string;
 	name: string;
-	expand?: {
-		vehicle_program_items: ProgramItem[];
-	};
+	value: string;
 }
 
 export interface Vehicle {
@@ -49,25 +40,13 @@ export interface Vehicle {
 	date_updated: string;
 	metric_type: string;
 	metric_value: string;
-	vehicle_attributes: string[];
-	vehicle_program: string;
-	expand?: {
-		vehicle_images: Image[];
-		vehicle_attributes: Attribute[];
-		vehicle_program: Program & {
-			expand?: {
-				vehicle_program_items: ProgramItem[];
-			};
-		};
-	};
 }
 
 export interface PageData {
 	vehicle: Vehicle | null;
 	images: Image[];
 	attributes: Attribute[];
-	program: Program | null;
-	programItems: ProgramItem[];
+	pricing: PriceItem[];
 }
 
 // You might want to export the load type as well

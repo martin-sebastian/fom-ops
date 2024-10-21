@@ -3,7 +3,7 @@
 
 	export let data: PageData;
 
-	$: ({ vehicle, images, attributes, program, programItems } = data);
+	$: ({ vehicle, images, attributes, pricing } = data);
 </script>
 
 {#if vehicle}
@@ -32,49 +32,6 @@
 	<h2 class="mb-2 mt-6 text-xl font-bold">Description</h2>
 	<div>{@html vehicle.description}</div>
 
-	<h2 class="mb-2 mt-6 text-xl font-bold">Vehicle Images</h2>
-	{#if images && images.length > 0}
-		<div class="grid grid-cols-3 gap-4">
-			{#each images as image}
-				<img src={image.imageurl} alt={image.alt || 'Vehicle image'} class="h-auto w-full" />
-			{/each}
-		</div>
-	{:else}
-		<p>No images available</p>
-	{/if}
-
-	<h2 class="mb-2 mt-6 text-xl font-bold">Vehicle Attributes</h2>
-	<p>Vehicle attributes IDs: {vehicle.vehicle_attributes.join(', ')}</p>
-
-	<h2 class="mb-2 mt-6 text-xl font-bold">Vehicle Program</h2>
-	<p><strong>Vehicle Program ID:</strong> {vehicle.vehicle_program}</p>
-	{#if program}
-		<p><strong>Program Name:</strong> {program.name}</p>
-		<p><strong>Program ID:</strong> {program.id}</p>
-
-		<h3 class="mb-2 mt-4 text-lg font-semibold">Program Items:</h3>
-		{#if programItems.length > 0}
-			<ul>
-				{#each programItems as item}
-					<li>{item.program_name}: {item.program_value}</li>
-				{/each}
-			</ul>
-		{:else}
-			<p>No program items available</p>
-		{/if}
-
-		<details>
-			<summary>Debug: Raw Program Data</summary>
-			<pre>{JSON.stringify(program, null, 2)}</pre>
-		</details>
-		<details>
-			<summary>Debug: Raw Program Items</summary>
-			<pre>{JSON.stringify(programItems, null, 2)}</pre>
-		</details>
-	{:else}
-		<p>No program information available</p>
-	{/if}
-
 	<h3 class="mb-2 mt-6 text-xl font-bold">Attributes:</h3>
 	{#if attributes && attributes.length > 0}
 		<ul>
@@ -84,6 +41,30 @@
 		</ul>
 	{:else}
 		<p>No attributes available</p>
+	{/if}
+
+	<h3 class="mb-2 mt-6 text-xl font-bold">Pricing:</h3>
+	{#if pricing && pricing.length > 0}
+		<ul>
+			{#each pricing as priceItem}
+				<li>
+					Name: {priceItem.name}, Value: {priceItem.value}
+				</li>
+			{/each}
+		</ul>
+	{:else}
+		<p>No pricing information available</p>
+	{/if}
+
+	<h2 class="mb-2 mt-6 text-xl font-bold">Vehicle Images</h2>
+	{#if images && images.length > 0}
+		<div class="grid grid-cols-3 gap-4">
+			{#each images as image}
+				<img src={image.imageurl} alt={image.alt || 'Vehicle image'} class="h-auto w-full" />
+			{/each}
+		</div>
+	{:else}
+		<p>No images available</p>
 	{/if}
 {:else}
 	<p>Vehicle not found</p>
