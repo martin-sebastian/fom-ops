@@ -6,6 +6,11 @@
 	$: ({ vehicle, images, attributes, pricing } = data);
 </script>
 
+<svelte:head>
+	<title>{vehicle.title}</title>
+	<meta name="description" content="Svelte demo app" />
+</svelte:head>
+
 {#if vehicle}
 	<h1 class="mb-4 text-2xl font-bold">{vehicle.title}</h1>
 	<div class="grid grid-cols-2 gap-4">

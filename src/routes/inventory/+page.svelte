@@ -3,6 +3,11 @@
 	const { vehicles } = data;
 </script>
 
+<svelte:head>
+	<title>Vehicle Inventory</title>
+	<meta name="description" content="Svelte demo app" />
+</svelte:head>
+
 <h1 class="mb-4 text-2xl font-bold">Inventory</h1>
 
 <ul>

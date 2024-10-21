@@ -29,6 +29,11 @@
 	}
 </script>
 
+<svelte:head>
+	<title>Profile</title>
+	<meta name="description" content="Svelte demo app" />
+</svelte:head>
+
 <div class="flex flex-col items-center justify-center py-10">
 	{#if userData}
 		{#if userData.record?.avatar}

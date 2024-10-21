@@ -30,14 +30,14 @@
 				<li aria-current={$page.url.pathname === '/inventory' ? 'page' : undefined}>
 					<a class="dark:invert" href="/inventory">Inventory</a>
 				</li>
-				<li aria-current={$page.url.pathname.startsWith('/levels') ? 'page' : undefined}>
-					<a class="dark:invert" href="/levels">levels</a>
+				<li aria-current={$page.url.pathname.startsWith('/parts') ? 'page' : undefined}>
+					<a class="dark:invert" href="/parts">Parts</a>
 				</li>
 				<li aria-current={$page.url.pathname === '/toggle' ? 'page' : undefined}>
 					<a class="dark:invert" href="/toggle">Toggle</a>
 				</li>
-				<li aria-current={$page.url.pathname === '/payments' ? 'page' : undefined}>
-					<a class="dark:invert" href="/payments">Payments</a>
+				<li aria-current={$page.url.pathname === '/vehicles' ? 'page' : undefined}>
+					<a class="dark:invert" href="/vehicles">Vehicles</a>
 				</li>
 			</ul>
 		</nav>
