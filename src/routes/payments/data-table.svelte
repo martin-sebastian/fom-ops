@@ -19,14 +19,14 @@
 	import { Input } from '$lib/components/ui/input/index.js';
 	import { page } from '$app/stores';
 
-	type Payment = {
+	type Part = {
 		id: string;
-		amount: number;
-		status: string;
-		email: string;
+		retail_price: number;
+		material_no: string;
+		part_desc: string;
 	};
 
-	export const data: Payment[] = $page.data.payments;
+	export const data: Part[] = $page.data.parts;
 
 	const table = createTable(readable(data), {
 		sort: addSortBy({ disableMultiSort: true }),
@@ -65,13 +65,13 @@
 			}
 		}),
 		table.column({
-			header: 'Status',
-			accessor: 'status',
+			header: 'Part Number',
+			accessor: 'material_no',
 			plugins: { sort: { disable: true }, filter: { exclude: true } }
 		}),
 		table.column({
-			header: 'Email',
-			accessor: 'email',
+			header: 'Part Description',
+			accessor: 'part_desc',
 			cell: ({ value }) => value.toLowerCase(),
 			plugins: {
 				filter: {
@@ -82,8 +82,8 @@
 			}
 		}),
 		table.column({
-			header: 'Amount',
-			accessor: 'amount',
+			header: 'Retail Price',
+			accessor: 'retail_price',
 			cell: ({ value }) => {
 				const formatted = new Intl.NumberFormat('en-US', {
 					style: 'currency',

@@ -5,7 +5,7 @@ const pb = new PocketBase('http://127.0.0.1:8090');
 
 export const load: PageLoad = async () => {
 	try {
-		const vehiclesResponse = await pb.collection('vehicles').getList(1, 5, {
+		const vehiclesResponse = await pb.collection('vehicles').getList(1, 500, {
 			sort: '-created'
 		});
 
