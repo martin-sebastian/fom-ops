@@ -1,13 +1,24 @@
+import type { PageLoad } from './$types';
 import PocketBase from 'pocketbase';
 
 const pb = new PocketBase('http://127.0.0.1:8090');
 
-export const load = async () => {
-	const vehicles = await pb.collection('vehicles').getList(1, 50, {
-		sort: '-updated'
-	});
+export const load: PageLoad = async () => {
+	try {
+		const vehiclesResponse = await pb.collection('vehicles').getList(1, 5, {
+			sort: '-created'
+		});
 
-	console.log('Fetched vehicles:', vehicles);
-
-	return { vehicles: vehicles.items };
+		const vehicles = vehiclesResponse.items.map((item) => ({
+			id: item.id,
+			price: item.price,
+			title: item.title,
+			stock_number: item.stock_number
+		}));
+		console.log('vehicles', vehicles);
+		return { vehicles };
+	} catch (error) {
+		console.error('Error fetching vehicles:', error);
+		return { vehicles: [] };
+	}
 };

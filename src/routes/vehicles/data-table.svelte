@@ -17,46 +17,16 @@
 	import * as DropdownMenu from '$lib/components/ui/dropdown-menu/index.js';
 	import { cn } from '$lib/utils.js';
 	import { Input } from '$lib/components/ui/input/index.js';
+	import { page } from '$app/stores';
 
-	type Payment = {
+	type Vehicle = {
 		id: string;
-		amount: number;
-		status: 'Pending' | 'Processing' | 'Success' | 'Failed';
-		email: string;
+		price: number;
+		title: string;
+		stock_number: string;
 	};
 
-	const data: Payment[] = [
-		{
-			id: 'm5gr84i9',
-			amount: 316,
-			status: 'Success',
-			email: 'ken99@yahoo.com'
-		},
-		{
-			id: '3u1reuv4',
-			amount: 242,
-			status: 'Success',
-			email: 'Abe45@gmail.com'
-		},
-		{
-			id: 'derv1ws0',
-			amount: 837,
-			status: 'Processing',
-			email: 'Monserrat44@gmail.com'
-		},
-		{
-			id: '5kma53ae',
-			amount: 874,
-			status: 'Success',
-			email: 'Silas22@gmail.com'
-		},
-		{
-			id: 'bhqecj4p',
-			amount: 721,
-			status: 'Failed',
-			email: 'carmella@hotmail.com'
-		}
-	];
+	const data: Vehicle[] = $page.data.vehicles;
 
 	const table = createTable(readable(data), {
 		sort: addSortBy({ disableMultiSort: true }),
@@ -95,25 +65,25 @@
 			}
 		}),
 		table.column({
-			header: 'Status',
-			accessor: 'status',
+			header: 'Stock Number',
+			accessor: 'stock_number',
 			plugins: { sort: { disable: true }, filter: { exclude: true } }
 		}),
 		table.column({
-			header: 'Email',
-			accessor: 'email',
+			header: 'Title',
+			accessor: 'title',
 			cell: ({ value }) => value.toLowerCase(),
 			plugins: {
 				filter: {
 					getFilterValue(value) {
-						return value.toLowerCase();
+						return value.toLowerCase() ?? '';
 					}
 				}
 			}
 		}),
 		table.column({
-			header: 'Amount',
-			accessor: 'amount',
+			header: 'Price',
+			accessor: 'price',
 			cell: ({ value }) => {
 				const formatted = new Intl.NumberFormat('en-US', {
 					style: 'currency',
@@ -162,7 +132,7 @@
 
 	const { selectedDataIds } = pluginStates.select;
 
-	const hideableCols = ['status', 'email', 'amount'];
+	const hideableCols = ['title', 'stock_number', 'price'];
 </script>
 
 <div class="w-full">

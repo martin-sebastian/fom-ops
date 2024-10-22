@@ -26,7 +26,7 @@
 		email: string;
 	};
 
-	$: data = $page.data.payments as Payment[];
+	export const data: Payment[] = $page.data.payments;
 
 	const table = createTable(readable(data), {
 		sort: addSortBy({ disableMultiSort: true }),
@@ -76,7 +76,7 @@
 			plugins: {
 				filter: {
 					getFilterValue(value) {
-						return value.toLowerCase();
+						return value?.toLowerCase() ?? '';
 					}
 				}
 			}

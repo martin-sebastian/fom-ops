@@ -5,7 +5,7 @@ const pb = new PocketBase('http://127.0.0.1:8090');
 
 export const load: PageLoad = async () => {
 	try {
-		const paymentsResponse = await pb.collection('payments').getList(1, 10, {
+		const paymentsResponse = await pb.collection('payments').getList(1, 5, {
 			sort: '-updated'
 		});
 
@@ -15,7 +15,7 @@ export const load: PageLoad = async () => {
 			status: item.status,
 			email: item.email
 		}));
-
+		console.log('payments', payments);
 		return { payments };
 	} catch (error) {
 		console.error('Error fetching payments:', error);
