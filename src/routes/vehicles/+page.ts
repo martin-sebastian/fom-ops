@@ -13,7 +13,9 @@ export const load: PageLoad = async () => {
 			id: item.id,
 			price: item.price,
 			title: item.title,
-			stock_number: item.stock_number
+			stock_number: item.stock_number,
+			vin: item.vin,
+			link: item.link
 		}));
 		console.log('vehicles', vehicles);
 		return { vehicles };

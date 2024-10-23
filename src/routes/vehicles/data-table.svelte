@@ -24,6 +24,8 @@
 		price: number;
 		title: string;
 		stock_number: string;
+		vin: string; // Make sure this exists
+		link: string; // Make sure this exists
 	};
 
 	const data: Vehicle[] = $page.data.vehicles;
@@ -102,9 +104,19 @@
 		}),
 		table.column({
 			header: '',
-			accessor: ({ id }) => id,
+			accessor: (row) => ({
+				id: row.id,
+				stock_number: row.stock_number || 'N/A',
+				vin: row.vin || 'N/A', // Fallback to 'N/A' if undefined
+				link: row.link || '#' // Fallback to '#' if undefined
+			}),
 			cell: (item) => {
-				return createRender(Actions, { id: item.value });
+				return createRender(Actions, {
+					id: item.value.id,
+					stock_number: item.value.stock_number || 'N/A',
+					vin: item.value.vin || 'N/A',
+					link: item.value.link || '#'
+				});
 			},
 			plugins: {
 				sort: {

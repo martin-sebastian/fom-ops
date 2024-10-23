@@ -19,14 +19,14 @@
 	import { Input } from '$lib/components/ui/input/index.js';
 	import { page } from '$app/stores';
 
-	type Part = {
+	type Vehicle = {
 		id: string;
-		retail_price: number;
-		material_no: string;
-		part_desc: string;
+		price: number;
+		title: string;
+		stock_number: string;
 	};
 
-	export const data: Part[] = $page.data.parts;
+	const data: Vehicle[] = $page.data.vehicles;
 
 	const table = createTable(readable(data), {
 		sort: addSortBy({ disableMultiSort: true }),
@@ -65,25 +65,25 @@
 			}
 		}),
 		table.column({
-			header: 'Part Number',
-			accessor: 'material_no',
+			header: 'Stock Number',
+			accessor: 'stock_number',
 			plugins: { sort: { disable: true }, filter: { exclude: true } }
 		}),
 		table.column({
-			header: 'Part Description',
-			accessor: 'part_desc',
+			header: 'Title',
+			accessor: 'title',
 			cell: ({ value }) => value.toLowerCase(),
 			plugins: {
 				filter: {
 					getFilterValue(value) {
-						return value?.toLowerCase() ?? '';
+						return value.toLowerCase() ?? '';
 					}
 				}
 			}
 		}),
 		table.column({
-			header: 'Retail Price',
-			accessor: 'retail_price',
+			header: 'Price',
+			accessor: 'price',
 			cell: ({ value }) => {
 				const formatted = new Intl.NumberFormat('en-US', {
 					style: 'currency',
@@ -132,12 +132,17 @@
 
 	const { selectedDataIds } = pluginStates.select;
 
-	const hideableCols = ['status', 'email', 'amount'];
+	const hideableCols = ['title', 'stock_number', 'price'];
 </script>
 
 <div class="w-full">
 	<div class="mb-4 flex items-center gap-4">
-		<Input class="max-w-sm" placeholder="Filter emails..." type="text" bind:value={$filterValue} />
+		<Input
+			class="max-w-sm"
+			placeholder="Filter by title..."
+			type="text"
+			bind:value={$filterValue}
+		/>
 		<DropdownMenu.Root>
 			<DropdownMenu.Trigger asChild let:builder>
 				<Button variant="outline" class="ml-auto" builders={[builder]}>

@@ -4,6 +4,11 @@
 	import { Button } from '$lib/components/ui/button';
 
 	export let id: string;
+	export let stock_number: string;
+	export let vin: string;
+	export let link: string;
+
+	console.log(id, stock_number, vin, link);
 </script>
 
 <DropdownMenu.Root>
@@ -15,13 +20,25 @@
 	</DropdownMenu.Trigger>
 	<DropdownMenu.Content>
 		<DropdownMenu.Group>
-			<DropdownMenu.Label>Actions</DropdownMenu.Label>
-			<DropdownMenu.Item on:click={() => navigator.clipboard.writeText(id)}>
-				Copy payment ID
+			<DropdownMenu.Label>Options</DropdownMenu.Label>
+			<DropdownMenu.Separator />
+			<DropdownMenu.Item on:click={() => (window.location.href = `/vehicles/${id}`)}>
+				EDIT VEHICLE
+			</DropdownMenu.Item>
+			<DropdownMenu.Separator />
+			<DropdownMenu.Item on:click={() => (window.location.href = `${link}`)}>
+				VIEW ON WEBSITE
+			</DropdownMenu.Item>
+			<DropdownMenu.Separator />
+			<DropdownMenu.Item>PRINT HANG TAG</DropdownMenu.Item>
+			<DropdownMenu.Item>PRINT KEY TAG</DropdownMenu.Item>
+			<DropdownMenu.Separator />
+			<DropdownMenu.Item on:click={() => navigator.clipboard.writeText(`${stock_number}`)}>
+				COPY STOCK #
+			</DropdownMenu.Item>
+			<DropdownMenu.Item on:click={() => navigator.clipboard.writeText(`${vin}`)}>
+				COPY VIN NUMBER
 			</DropdownMenu.Item>
 		</DropdownMenu.Group>
-		<DropdownMenu.Separator />
-		<DropdownMenu.Item>View customer</DropdownMenu.Item>
-		<DropdownMenu.Item>View payment details</DropdownMenu.Item>
 	</DropdownMenu.Content>
 </DropdownMenu.Root>
