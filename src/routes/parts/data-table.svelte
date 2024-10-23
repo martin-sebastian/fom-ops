@@ -21,9 +21,15 @@
 
 	type Part = {
 		id: string;
-		retail_price: number;
-		material_no: string;
+		part_number: string;
 		part_desc: string;
+		retail_price: number;
+		dealer_price: number;
+		distributor_price: number;
+		superseded_part: string;
+		superseded_by: string;
+		last_yr_util: string;
+		in_package_qty: number;
 	};
 
 	export const data: Part[] = $page.data.parts;
@@ -66,7 +72,7 @@
 		}),
 		table.column({
 			header: 'Part Number',
-			accessor: 'material_no',
+			accessor: 'part_number',
 			plugins: { sort: { disable: true }, filter: { exclude: true } }
 		}),
 		table.column({
@@ -101,6 +107,36 @@
 			}
 		}),
 		table.column({
+			header: 'Distributor Price',
+			accessor: 'distributor_price',
+			plugins: { sort: { disable: true }, filter: { exclude: true } }
+		}),
+		table.column({
+			header: 'Dealer Price',
+			accessor: 'dealer_price',
+			plugins: { sort: { disable: true }, filter: { exclude: true } }
+		}),
+		table.column({
+			header: 'Superseded Part',
+			accessor: 'superseded_part',
+			plugins: { sort: { disable: true }, filter: { exclude: true } }
+		}),
+		table.column({
+			header: 'Superseded By',
+			accessor: 'superseded_by',
+			plugins: { sort: { disable: true }, filter: { exclude: true } }
+		}),
+		table.column({
+			header: 'Last Year',
+			accessor: 'last_yr_util',
+			plugins: { sort: { disable: true }, filter: { exclude: true } }
+		}),
+		table.column({
+			header: 'In Pkg Qty',
+			accessor: 'in_package_qty',
+			plugins: { sort: { disable: true }, filter: { exclude: true } }
+		}),
+		table.column({
 			header: '',
 			accessor: ({ id }) => id,
 			cell: (item) => {
@@ -132,7 +168,14 @@
 
 	const { selectedDataIds } = pluginStates.select;
 
-	const hideableCols = ['status', 'email', 'amount'];
+	const hideableCols = [
+		'distributor_price',
+		'dealer_price',
+		'superseded_part',
+		'superseded_by',
+		'last_yr_util',
+		'in_package_qty'
+	];
 </script>
 
 <div class="w-full">
@@ -164,17 +207,17 @@
 							{#each headerRow.cells as cell (cell.id)}
 								<Subscribe attrs={cell.attrs()} let:attrs props={cell.props()} let:props>
 									<Table.Head {...attrs} class={cn('[&:has([role=checkbox])]:pl-3')}>
-										{#if cell.id === 'amount'}
-											<div class="text-right">
+										{#if cell.id === 'retail_price'}
+											<div class="text-left">
 												<Render of={cell.render()} />
 											</div>
-										{:else if cell.id === 'email'}
+										{:else if cell.id === 'part_desc'}
 											<Button variant="ghost" on:click={props.sort.toggle}>
 												<Render of={cell.render()} />
 												<CaretSort
 													class={cn(
 														$sortKeys[0]?.id === cell.id && 'text-foreground',
-														'ml-2 h-4 w-4'
+														'ml-0 h-4 w-full'
 													)}
 												/>
 											</Button>
@@ -195,8 +238,8 @@
 							{#each row.cells as cell (cell.id)}
 								<Subscribe attrs={cell.attrs()} let:attrs>
 									<Table.Cell class="[&:has([role=checkbox])]:pl-3" {...attrs}>
-										{#if cell.id === 'amount'}
-											<div class="text-right font-medium">
+										{#if cell.id === 'retail_price'}
+											<div class="text-left font-medium">
 												<Render of={cell.render()} />
 											</div>
 										{:else}

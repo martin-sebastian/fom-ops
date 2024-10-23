@@ -11,9 +11,15 @@ export const load: PageLoad = async () => {
 
 		const parts = partsResponse.items.map((item) => ({
 			id: item.id,
+			part_number: item.material_no,
+			part_desc: item.part_desc,
 			retail_price: item.retail_price,
-			material_no: item.material_no,
-			part_desc: item.part_desc
+			dealer_price: item.dealer_price,
+			distributor_price: item.distributor_price,
+			superseded_part: item.superseded_part,
+			superseded_by: item.superseded_by,
+			last_yr_util: item.last_yr_util,
+			in_package_qty: item.in_package_qty
 		}));
 		console.log('parts', parts);
 		return { parts };

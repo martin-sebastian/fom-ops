@@ -29,6 +29,7 @@
 		link: string; // Make sure this exists
 		image: string; // Add this property
 		pricing: number;
+		cost: number;
 	};
 
 	const data: Vehicle[] = $page.data.vehicles;
@@ -106,8 +107,41 @@
 		}),
 
 		table.column({
+			header: 'VIN',
+			accessor: 'vin',
+			plugins: {
+				sort: {
+					disable: true
+				},
+				filter: {
+					exclude: true
+				}
+			}
+		}),
+
+		table.column({
 			header: 'Price',
 			accessor: 'price',
+			cell: ({ value }) => {
+				const formatted = new Intl.NumberFormat('en-US', {
+					style: 'currency',
+					currency: 'USD'
+				}).format(value);
+				return formatted;
+			},
+			plugins: {
+				sort: {
+					disable: true
+				},
+				filter: {
+					exclude: true
+				}
+			}
+		}),
+
+		table.column({
+			header: 'Cost',
+			accessor: 'cost',
 			cell: ({ value }) => {
 				const formatted = new Intl.NumberFormat('en-US', {
 					style: 'currency',
@@ -146,8 +180,20 @@
 		}),
 
 		table.column({
-			header: 'VIN',
-			accessor: 'vin',
+			header: 'Discounts',
+			accessor: 'discounts',
+			plugins: {
+				sort: {
+					disable: true
+				},
+				filter: {
+					exclude: true
+				}
+			}
+		}),
+		table.column({
+			header: 'Fees',
+			accessor: 'fees',
 			plugins: {
 				sort: {
 					disable: true
@@ -165,7 +211,9 @@
 				stock_number: row.stock_number,
 				vin: row.vin || 'N/A',
 				link: row.link || '#',
-				image: row.image || '' // Add this line
+				image: row.image || '', // Add this line
+				fees: row.fees || '0',
+				discounts: row.pricing || 0
 			}),
 			cell: (item) => {
 				return createRender(Actions, {
@@ -173,7 +221,9 @@
 					stock_number: item.value.stock_number,
 					vin: item.value.vin,
 					link: item.value.link,
-					image: item.value.image // Add this line
+					image: item.value.image,
+					fees: item.value.fees,
+					discounts: item.value.discounts
 				});
 			},
 			plugins: {
@@ -202,7 +252,7 @@
 
 	const { selectedDataIds } = pluginStates.select;
 
-	const hideableCols = ['title', 'image', 'stock_number', 'price', 'vin'];
+	const hideableCols = ['title', 'image', 'stock_number', 'price', 'cost', 'fees', 'discounts'];
 </script>
 
 <div class="w-full">
@@ -239,15 +289,11 @@
 							{#each headerRow.cells as cell (cell.id)}
 								<Subscribe attrs={cell.attrs()} let:attrs props={cell.props()} let:props>
 									<Table.Head {...attrs} class={cn('[&:has([role=checkbox])]:pl-3')}>
-										{#if cell.id === 'price'}
+										{#if cell.id === 'fees'}
 											<div class="text-left">
 												<Render of={cell.render()} />
 											</div>
-										{:else if cell.id === 'price2'}
-											<div class="text-left">
-												<Render of={cell.render()} />
-											</div>
-										{:else if cell.id === 'title' || cell.id === 'stock_number'}
+										{:else if cell.id === 'title' || cell.id === 'price'}
 											<Button
 												class="m-0 px-0 py-1 text-start"
 												variant="ghost"
@@ -256,14 +302,6 @@
 												<Render of={cell.render()} />
 												<CaretSort class={'ml-1 h-4 w-4'} />
 											</Button>
-										{:else if cell.id === 'vin'}
-											<div class="font-mono">
-												<Render of={cell.render()} />
-											</div>
-										{:else if cell.id === 'image'}
-											<div class="font-mono">
-												<Render of={cell.render()} />
-											</div>
 										{:else}
 											<Render of={cell.render()} />
 										{/if}
@@ -282,11 +320,20 @@
 								<Subscribe attrs={cell.attrs()} let:attrs>
 									<Table.Cell class="[&:has([role=checkbox])]:pl-3" {...attrs}>
 										{#if cell.id === 'price'}
-											<div class="text-left font-medium">
+											<div class="rounded-sm bg-gray-800/100 p-2 text-left font-medium">
 												<Render of={cell.render()} />
 											</div>
 										{:else if cell.id === 'image'}
-											<img src={cell.value} alt="Vehicle" class="h-16 w-16 rounded object-cover" />
+											<img src={cell.value} alt="Vehicle" class="w-22 h-16 rounded object-cover" />
+										{:else if cell.id === 'title'}
+											<button
+												type="button"
+												on:click={() => (window.location.href = `/vehicles/${row.id}`)}
+											>
+												<div class="font-large uppercase">
+													<Render of={cell.render()} />
+												</div>
+											</button>
 										{:else}
 											<Render of={cell.render()} />
 										{/if}
