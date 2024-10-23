@@ -1,6 +1,7 @@
 <script lang="ts">
 	import CaretSort from 'svelte-radix/CaretSort.svelte';
 	import ChevronDown from 'svelte-radix/ChevronDown.svelte';
+	import martin from '$lib/images/martin-sebastian.jpg';
 	import { Render, Subscribe, createRender, createTable } from 'svelte-headless-table';
 	import {
 		addHiddenColumns,
@@ -26,6 +27,8 @@
 		stock_number: string;
 		vin: string; // Make sure this exists
 		link: string; // Make sure this exists
+		image: string; // Add this property
+		pricing: number;
 	};
 
 	const data: Vehicle[] = $page.data.vehicles;
@@ -66,11 +69,29 @@
 				}
 			}
 		}),
+
+		table.column({
+			header: 'Image',
+			accessor: 'image',
+			plugins: {
+				sort: { disable: true },
+				filter: { exclude: true }
+			}
+		}),
+
 		table.column({
 			header: 'Stock Number',
 			accessor: 'stock_number',
-			plugins: { sort: { disable: true }, filter: { exclude: true } }
+			plugins: {
+				sort: { disable: false },
+				filter: {
+					getFilterValue(value) {
+						return value.toLowerCase() ?? '';
+					}
+				}
+			}
 		}),
+
 		table.column({
 			header: 'Title',
 			accessor: 'title',
@@ -83,6 +104,7 @@
 				}
 			}
 		}),
+
 		table.column({
 			header: 'Price',
 			accessor: 'price',
@@ -102,20 +124,56 @@
 				}
 			}
 		}),
+
+		table.column({
+			header: 'Rebates',
+			accessor: 'pricing',
+			cell: ({ value }) => {
+				const formatted = new Intl.NumberFormat('en-US', {
+					style: 'currency',
+					currency: 'USD'
+				}).format(value);
+				return formatted;
+			},
+			plugins: {
+				sort: {
+					disable: true
+				},
+				filter: {
+					exclude: true
+				}
+			}
+		}),
+
+		table.column({
+			header: 'VIN',
+			accessor: 'vin',
+			plugins: {
+				sort: {
+					disable: true
+				},
+				filter: {
+					exclude: true
+				}
+			}
+		}),
+
 		table.column({
 			header: '',
 			accessor: (row) => ({
 				id: row.id,
-				stock_number: row.stock_number || 'N/A',
-				vin: row.vin || 'N/A', // Fallback to 'N/A' if undefined
-				link: row.link || '#' // Fallback to '#' if undefined
+				stock_number: row.stock_number,
+				vin: row.vin || 'N/A',
+				link: row.link || '#',
+				image: row.image || '' // Add this line
 			}),
 			cell: (item) => {
 				return createRender(Actions, {
 					id: item.value.id,
-					stock_number: item.value.stock_number || 'N/A',
-					vin: item.value.vin || 'N/A',
-					link: item.value.link || '#'
+					stock_number: item.value.stock_number,
+					vin: item.value.vin,
+					link: item.value.link,
+					image: item.value.image // Add this line
 				});
 			},
 			plugins: {
@@ -144,7 +202,7 @@
 
 	const { selectedDataIds } = pluginStates.select;
 
-	const hideableCols = ['title', 'stock_number', 'price'];
+	const hideableCols = ['title', 'image', 'stock_number', 'price', 'vin'];
 </script>
 
 <div class="w-full">
@@ -181,20 +239,31 @@
 							{#each headerRow.cells as cell (cell.id)}
 								<Subscribe attrs={cell.attrs()} let:attrs props={cell.props()} let:props>
 									<Table.Head {...attrs} class={cn('[&:has([role=checkbox])]:pl-3')}>
-										{#if cell.id === 'amount'}
-											<div class="text-right">
+										{#if cell.id === 'price'}
+											<div class="text-left">
 												<Render of={cell.render()} />
 											</div>
-										{:else if cell.id === 'email'}
-											<Button variant="ghost" on:click={props.sort.toggle}>
+										{:else if cell.id === 'price2'}
+											<div class="text-left">
 												<Render of={cell.render()} />
-												<CaretSort
-													class={cn(
-														$sortKeys[0]?.id === cell.id && 'text-foreground',
-														'ml-2 h-4 w-4'
-													)}
-												/>
+											</div>
+										{:else if cell.id === 'title' || cell.id === 'stock_number'}
+											<Button
+												class="m-0 px-0 py-1 text-start"
+												variant="ghost"
+												on:click={props.sort.toggle}
+											>
+												<Render of={cell.render()} />
+												<CaretSort class={'ml-1 h-4 w-4'} />
 											</Button>
+										{:else if cell.id === 'vin'}
+											<div class="font-mono">
+												<Render of={cell.render()} />
+											</div>
+										{:else if cell.id === 'image'}
+											<div class="font-mono">
+												<Render of={cell.render()} />
+											</div>
 										{:else}
 											<Render of={cell.render()} />
 										{/if}
@@ -212,10 +281,12 @@
 							{#each row.cells as cell (cell.id)}
 								<Subscribe attrs={cell.attrs()} let:attrs>
 									<Table.Cell class="[&:has([role=checkbox])]:pl-3" {...attrs}>
-										{#if cell.id === 'amount'}
-											<div class="text-right font-medium">
+										{#if cell.id === 'price'}
+											<div class="text-left font-medium">
 												<Render of={cell.render()} />
 											</div>
+										{:else if cell.id === 'image'}
+											<img src={cell.value} alt="Vehicle" class="h-16 w-16 rounded object-cover" />
 										{:else}
 											<Render of={cell.render()} />
 										{/if}

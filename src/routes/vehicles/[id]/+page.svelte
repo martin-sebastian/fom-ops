@@ -3,7 +3,7 @@
 
 	export let data: PageData;
 
-	$: ({ vehicle, images, attributes, pricing } = data);
+	$: ({ vehicle, images, attributes, pricing, totalPricing } = data);
 </script>
 
 <svelte:head>
@@ -53,7 +53,20 @@
 		<ul>
 			{#each pricing as priceItem}
 				<li>
-					Name: {priceItem.name}, Value: {priceItem.value}
+					{priceItem.name}, {priceItem.value}
+				</li>
+			{/each}
+		</ul>
+	{:else}
+		<p>No pricing information available</p>
+	{/if}
+
+	<h3 class="mb-2 mt-6 text-xl font-bold">Total Pricing:</h3>
+	{#if totalPricing}
+		<ul>
+			{#each pricing as priceItem}
+				<li>
+					{priceItem.name}, {priceItem.value}
 				</li>
 			{/each}
 		</ul>

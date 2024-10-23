@@ -3,6 +3,6 @@
 	//export let vehicles: any[]; // Ensure this is defined correctly
 </script>
 
-<h1 class="h1 py-4">Vehicles</h1>
+<h1 class="py-4 text-5xl font-bold">Vehicles</h1>
 
 <DataTable />

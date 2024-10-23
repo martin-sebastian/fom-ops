@@ -7,8 +7,8 @@
 	export let stock_number: string;
 	export let vin: string;
 	export let link: string;
-
-	console.log(id, stock_number, vin, link);
+	export let image: string;
+	console.log(id, stock_number, vin, link, image);
 </script>
 
 <DropdownMenu.Root>
