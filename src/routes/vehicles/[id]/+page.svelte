@@ -3,11 +3,11 @@
 
 	export let data: PageData;
 
-	$: ({ vehicle, images, attributes, pricing, totalPricing } = data);
+	$: ({ vehicle, images, attributes, pricing, program } = data);
 </script>
 
 <svelte:head>
-	<title>{vehicle.title}</title>
+	<title>{vehicle?.title}</title>
 	<meta name="description" content="Svelte demo app" />
 </svelte:head>
 
@@ -35,7 +35,7 @@
 	</div>
 
 	<h2 class="mb-2 mt-6 text-xl font-bold">Description</h2>
-	<div>{@html vehicle.description}</div>
+	<div>{@html vehicle?.description}</div>
 
 	<h3 class="mb-2 mt-6 text-xl font-bold">Attributes:</h3>
 	{#if attributes && attributes.length > 0}
@@ -61,17 +61,11 @@
 		<p>No pricing information available</p>
 	{/if}
 
-	<h3 class="mb-2 mt-6 text-xl font-bold">Total Pricing:</h3>
-	{#if totalPricing}
-		<ul>
-			{#each pricing as priceItem}
-				<li>
-					{priceItem.name}, {priceItem.value}
-				</li>
-			{/each}
-		</ul>
+	<h3 class="mb-2 mt-6 text-xl font-bold">Program:</h3>
+	{#if program && program.length > 0}
+		{program.name}, {program.value}
 	{:else}
-		<p>No pricing information available</p>
+		<p>No program information available</p>
 	{/if}
 
 	<h2 class="mb-2 mt-6 text-xl font-bold">Vehicle Images</h2>
@@ -88,7 +82,7 @@
 	<p>Vehicle not found</p>
 {/if}
 <a
-	href={vehicle.link}
+	href={vehicle?.link}
 	class="mt-6 inline-block rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
 	>View on Website</a
 >
