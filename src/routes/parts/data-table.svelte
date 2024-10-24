@@ -243,7 +243,9 @@
 												<Render of={cell.render()} />
 											</div>
 										{:else}
-											<Render of={cell.render()} />
+											<div class="text-leftfont-medium uppercase">
+												<Render of={cell.render()} />
+											</div>
 										{/if}
 									</Table.Cell>
 								</Subscribe>

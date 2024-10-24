@@ -6,7 +6,7 @@ const pb = new PocketBase('http://127.0.0.1:8090');
 export const load: PageLoad = async () => {
 	try {
 		const vehiclesResponse = await pb.collection('vehicles').getList(1, 500, {
-			expand: 'vehicle_images,vehicle_pricing',
+			expand: 'vehicle_images',
 			sort: '-created'
 		});
 
