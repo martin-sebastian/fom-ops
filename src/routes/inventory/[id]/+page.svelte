@@ -20,11 +20,13 @@
 	<meta name="description" content="Svelte demo app" />
 </svelte:head>
 
-<main>
+<header class="py-5">
 	{#if vehicle}
 		<h2 class="my-4 text-2xl font-semibold">{vehicle.title}</h2>
 		<div class="grid grid-cols-2 gap-4">
-			<div class="rounded-lg border border-slate-200 text-center dark:border-slate-800">
+			<div
+				class="overflow-hidden rounded-lg border border-slate-200 text-center dark:border-slate-800"
+			>
 				<div
 					class="w-screen overflow-x-scroll rounded-lg hover:overflow-x-scroll"
 					style="width: 100%; max-width: 3000px; scroll-snap-type: x mandatory;"
@@ -36,7 +38,7 @@
 									<img
 										src={image?.imageurl}
 										alt={image?.alt || 'Vehicle image'}
-										class="m-2 h-auto w-96 rounded-lg"
+										class="m-2 h-auto w-11/12 rounded-lg"
 									/>
 								{/each}
 							</div>
@@ -47,11 +49,6 @@
 						<p>Vehicle not found</p>
 					{/if}
 				</div>
-				<a
-					href={vehicle?.link}
-					class="my-4 inline-block rounded bg-blue-500 px-6 py-2 text-white hover:bg-blue-600"
-					>View on Website</a
-				>
 			</div>
 			<div class="rounded-lg border border-slate-200 dark:border-slate-800">
 				<h2 class="mt-0 border-b px-2 py-2 text-lg font-bold">Pricing</h2>
@@ -70,7 +67,7 @@
 					</ul>
 				{:else}
 					<ul>
-						<li class="border-b border-slate-200 p-2 dark:border-slate-800">
+						<li class="border-b border-slate-200 py-2 dark:border-slate-800">
 							No pricing information available
 						</li>
 					</ul>
@@ -78,7 +75,7 @@
 
 				<ul>
 					<li
-						class="text-md border-b border-slate-200 p-2 px-2 py-0 font-semibold dark:border-slate-800"
+						class="text-md border-b border-slate-200 px-2 py-0 font-semibold dark:border-slate-800"
 					>
 						Programs:
 					</li>
@@ -86,7 +83,7 @@
 				{#if programs && programs.length > 0}
 					<ul>
 						{#each programs as program}
-							<li class="border-b border-slate-200 p-2 dark:border-slate-800">
+							<li class="border-b border-slate-200 py-2 dark:border-slate-800">
 								{program.program_name} - {program.program_description}
 							</li>
 						{/each}
@@ -106,86 +103,13 @@
 					</li>
 				</ul>
 			</div>
-			<div class="rounded-lg border border-slate-200 dark:border-slate-800">
-				<ul>
-					<li class="border-b border-slate-200 px-2 py-1 dark:border-slate-800">
-						Stock Number: {vehicle?.stock_number}
-					</li>
-					<li class="border-b border-slate-200 px-2 py-1 dark:border-slate-800">
-						VIN: {vehicle?.vin}
-					</li>
-					<li class="border-b border-slate-200 px-2 py-1 dark:border-slate-800">
-						Year: {vehicle?.year}
-					</li>
-					<li class="border-b border-slate-200 px-2 py-1 dark:border-slate-800">
-						Make: {vehicle?.manufacturer}
-					</li>
-					<li class="border-b border-slate-200 px-2 py-1 dark:border-slate-800">
-						Model: {vehicle?.model_name}
-					</li>
-					<li class="border-b border-slate-200 px-2 py-1 dark:border-slate-800">
-						Model Type: {vehicle?.model_type}
-					</li>
-					<li class="border-b border-slate-200 px-2 py-1 dark:border-slate-800">
-						Color: {vehicle?.color}
-					</li>
-					<li class="border-b border-slate-200 px-2 py-1 dark:border-slate-800">
-						Condition: {vehicle?.condition}
-					</li>
-					<li class="border-b border-slate-200 px-2 py-1 dark:border-slate-800">
-						Usage: {vehicle?.usage}
-					</li>
-					<li class="border-b border-slate-200 px-2 py-1 dark:border-slate-800">
-						Price: {formatCurrency(vehicle?.price)}
-					</li>
-					<li class="border-b border-slate-200 px-2 py-1 dark:border-slate-800">
-						Price Type: {vehicle?.price_type}
-					</li>
-					<li class="border-b border-slate-200 px-2 py-1 dark:border-slate-800">
-						Location: {vehicle?.location}
-					</li>
-					<li class="border-b border-slate-200 px-2 py-1 dark:border-slate-800">
-						Web ID: {vehicle?.webid}
-					</li>
-					<li class="border-b border-slate-200 px-2 py-1 dark:border-slate-800">
-						Created: {new Date(vehicle?.created).toLocaleString()}
-					</li>
-					<li class="border-b border-slate-200 px-2 py-1 dark:border-slate-800">
-						Updated: {new Date(vehicle?.updated).toLocaleString()}
-					</li>
-					<li class="border-b border-slate-200 px-2 py-1 dark:border-slate-800">
-						Date Updated: {new Date(vehicle?.date_updated).toLocaleString()}
-					</li>
-					<li class="border-b border-slate-200 px-2 py-1 dark:border-slate-800">
-						Metric Type: {vehicle?.metric_type}
-					</li>
-					<li class="border-b border-slate-200 px-2 py-1 dark:border-slate-800">
-						Metric Value: {vehicle?.metric_value}
-					</li>
-				</ul>
-
-				<h3 class="text-xl font-bold">Attributes:</h3>
-				{#if attributes && attributes.length > 0}
-					<ul>
-						{#each attributes as attribute}
-							<li class="border-b border-slate-200 px-2 py-1 dark:border-slate-800">
-								{attribute.name}: {attribute.value}
-							</li>
-						{/each}
-					</ul>
-				{:else}
-					<p>No attributes available</p>
-				{/if}
-			</div>
-			<div class="rounded-lg border border-slate-200 p-4 dark:border-slate-800">
-				{@html vehicle?.description}
-			</div>
 		</div>
 	{:else}
 		<p>Vehicle not found</p>
 	{/if}
-</main>
-<article>
+</header>
+
+<nav class="py-4">
 	<div class="border-b border-gray-200 dark:border-gray-700">
 		<ul
 			class="-mb-px flex flex-wrap text-center text-sm font-medium text-gray-500 dark:text-gray-400"
@@ -265,12 +189,106 @@
 			</li>
 		</ul>
 	</div>
-</article>
+</nav>
+
+<main class="my-10">
+	{#if vehicle}
+		<div class="grid grid-cols-2 gap-4">
+			<div class="rounded-lg border border-slate-200 dark:border-slate-800">
+				<ul>
+					<li class="border-b border-slate-200 px-4 py-1 dark:border-slate-800">
+						Stock Number: {vehicle?.stock_number}
+					</li>
+					<li class="border-b border-slate-200 px-4 py-1 dark:border-slate-800">
+						VIN: {vehicle?.vin}
+					</li>
+					<li class="border-b border-slate-200 px-4 py-1 dark:border-slate-800">
+						Year: {vehicle?.year}
+					</li>
+					<li class="border-b border-slate-200 px-4 py-1 dark:border-slate-800">
+						Make: {vehicle?.manufacturer}
+					</li>
+					<li class="border-b border-slate-200 px-4 py-1 dark:border-slate-800">
+						Model: {vehicle?.model_name}
+					</li>
+					<li class="border-b border-slate-200 px-4 py-1 dark:border-slate-800">
+						Model Type: {vehicle?.model_type}
+					</li>
+					<li class="border-b border-slate-200 px-4 py-1 dark:border-slate-800">
+						Color: {vehicle?.color}
+					</li>
+					<li class="border-b border-slate-200 px-4 py-1 dark:border-slate-800">
+						Condition: {vehicle?.condition}
+					</li>
+					<li class="border-b border-slate-200 px-4 py-1 dark:border-slate-800">
+						Usage: {vehicle?.usage}
+					</li>
+					<li class="border-b border-slate-200 px-4 py-1 dark:border-slate-800">
+						Price: {formatCurrency(vehicle?.price)}
+					</li>
+					<li class="border-b border-slate-200 px-4 py-1 dark:border-slate-800">
+						Price Type: {vehicle?.price_type}
+					</li>
+					<li class="border-b border-slate-200 px-4 py-1 dark:border-slate-800">
+						Location: {vehicle?.location}
+					</li>
+					<li class="border-b border-slate-200 px-4 py-1 dark:border-slate-800">
+						Web ID: {vehicle?.webid}
+					</li>
+					<li class="border-b border-slate-200 px-4 py-1 dark:border-slate-800">
+						Created: {new Date(vehicle?.created).toLocaleString()}
+					</li>
+					<li class="border-b border-slate-200 px-4 py-1 dark:border-slate-800">
+						Updated: {new Date(vehicle?.updated).toLocaleString()}
+					</li>
+					<li class="border-b border-slate-200 px-4 py-1 dark:border-slate-800">
+						Date Updated: {new Date(vehicle?.date_updated).toLocaleString()}
+					</li>
+					<li class="border-b border-slate-200 px-4 py-1 dark:border-slate-800">
+						Metric Type: {vehicle?.metric_type}
+					</li>
+					<li class="border-b border-slate-200 px-4 py-1 dark:border-slate-800">
+						Metric Value: {vehicle?.metric_value}
+					</li>
+				</ul>
+
+				<ul class="divide-y divide-slate-200 dark:divide-slate-800">
+					<li class="text-md px-4 py-1 font-semibold">Attributes:</li>
+				</ul>
+				{#if attributes && attributes.length > 0}
+					<ul class="mb-4 divide-y divide-slate-200 dark:divide-slate-800">
+						{#each attributes as attribute}
+							<li class="border-b border-slate-200 px-4 py-1 dark:border-slate-800">
+								{attribute.name}: {attribute.value}
+							</li>
+						{/each}
+					</ul>
+				{:else}
+					<p>No attributes available</p>
+				{/if}
+			</div>
+			<div class="rounded-lg border border-slate-200 p-4 dark:border-slate-800">
+				{@html vehicle?.description}
+			</div>
+		</div>
+	{:else}
+		<p>Vehicle not found</p>
+	{/if}
+</main>
 
 <style>
+	header {
+		width: 64rem;
+		margin: 0 auto;
+		font-size: 0.8rem;
+	}
 	main {
 		width: 64rem;
 		margin: 0 auto;
 		font-size: 0.8rem;
+	}
+	nav {
+		width: 64rem;
+		margin: 0 auto;
 	}
 </style>

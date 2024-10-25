@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { Button } from '$lib/components/ui/button';
 	import { page } from '$app/stores';
+	import svelte_logo from '$lib/images/svelte-logo.svg';
 
 	function copyToClipboard() {
 		navigator.clipboard
@@ -32,10 +33,25 @@
 <main class="flex flex-col items-center justify-center">
 	<h1 class="my-10 px-4 text-5xl font-normal">Open Graph Protocol</h1>
 	<div class="grid grid-flow-col grid-rows-3 gap-4">
+		<div
+			class="col-span-2 rounded-md border border-slate-200 bg-slate-100 dark:border-slate-800 dark:bg-slate-900/50"
+		>
+			<h1 class="my-4 px-4 pt-4 text-2xl font-bold">OGP: Open Graph Protocol</h1>
+			<p class="text-md my-2 px-4 text-left">
+				Open Graph Protocol (OGP) is a standard that allows web developers to control how their
+				content is displayed when it is shared on social media platforms. OGP is also used to
+				generate awesome looking sms bubbles when shared via iPhone messages.
+			</p>
+		</div>
+		<div
+			class="col-span-2 row-span-2 flex flex-col items-center justify-center rounded-md border border-slate-200 bg-slate-100 dark:border-slate-800 dark:bg-slate-900/50"
+		>
+			<div><img src={svelte_logo} alt="iPhone message bubble" /></div>
+		</div>
 		<div class="row-span-3">
 			<div
 				id="og-bubble"
-				class="max-w-xl overflow-hidden rounded-md border border-slate-200/50 bg-slate-200 shadow-black hover:shadow-xl dark:border-slate-800 dark:bg-slate-900/50 dark:shadow-gray-100 hover:dark:shadow-xl"
+				class="w-full overflow-hidden rounded-md border border-slate-200/50 bg-slate-200 shadow-black hover:shadow-xl dark:border-slate-800 dark:bg-slate-900/50 dark:shadow-gray-100 hover:dark:shadow-xl"
 			>
 				<a href="https://www.flatoutmotorcycles.com/inventory/unit-12298319i">
 					<img
@@ -43,16 +59,19 @@
 						alt="2024 Kawasaki STX 160X"
 					/>
 				</a>
-				<div class="bg-slate-200 dark:bg-slate-900/50">
-					<h1 class="my-2 px-4 text-2xl font-black">2024 Kawasaki STX 160X</h1>
+				<div
+					class="border-t border-slate-200 bg-slate-100 dark:border-slate-800 dark:bg-slate-900/50"
+				>
+					<h1 class="my-2 px-4 text-xl font-bold">2024 Kawasaki STX 160X</h1>
 					<p class="px-4 text-sm">
-						Engine Type: 4-stroke, DOHC, four valves per cylinder, 4-cylinder inline Displacement:
-						1,498cc Bore and Stroke: 83.0 x 69.2mm Cooling: Inducted water Compression Ratio: 10.6:1
-						Fuel System: DFI® with 60mm throttle body Ignition: TCBI with digital advance Starting:
-						Electric Dry Weight: Curb Weight: 864.4 lb. Fuel Capacity: 20.6 gal. Height: 45.4 in.
-						Length: 124.1 in. Width: 46.5 in. Oil Capacity: 5.3 qt. Rider Capacity: 3 Storage
-						Capacity: 35.0 gal. Impeller: 3-blade, oval-edge stainless steel Pump: 148mm jet pump,
-						axial-flow, single stage Color: Ebony/Lime Green. MSRP $12,599.00, OUR PRICE $10,599.00
+						The 2024 Kawasaki STX 160X is a powerful, versatile jet ski designed for thrilling rides
+						and effortless cruising. Equipped with a robust 1,498cc, 4-cylinder, 4-stroke engine, it
+						boasts a fuel-efficient DFI® system, delivering impressive performance on the water.
+						With a rider capacity of up to three people, it provides ample room for friends or
+						family. Featuring a sleek Ebony/Lime Green color scheme, the STX 160X includes a 148mm
+						jet pump for smooth handling and a spacious 35-gallon storage capacity. Its 20.6-gallon
+						fuel tank ensures long-lasting fun, making it an ideal choice for both adventure and
+						relaxation on the water.
 					</p>
 
 					<Button
@@ -66,25 +85,26 @@
 				</div>
 			</div>
 			<div
-				class="rounded-md-xl mt-4 flex justify-center border border-gray-200 bg-gray-100 px-6 py-4 dark:border-gray-800 dark:bg-gray-900"
+				class="rounded-md-xl mt-4 rounded border border-gray-200 bg-gray-100 px-6 py-4 dark:border-gray-800 dark:bg-gray-900"
 			>
-				<div class="py-2">{$page.url}</div>
-				<Button class="mx-2 py-1 text-xs" on:click={copyToClipboard}>Copy URL</Button>
+				<div class="b py-2 text-center text-sm">
+					Click the button below to text or post this vehicle, then paste into iMessage or any of
+					your favorite social media platforms.
+
+					<Button class="my-4 py-1 text-xs" on:click={copyToClipboard}>
+						<img src={svelte_logo} alt="Svelte Logo" class="mr-2 h-4 w-4" />
+						SHARETHIS VEHICLE
+					</Button>
+				</div>
 			</div>
-		</div>
-		<div
-			class="col-span-2 rounded-md border border-slate-200 bg-slate-200 dark:border-slate-800 dark:bg-slate-900/50"
-		>
-			<h1 class="my-2 px-4 text-2xl font-black">Open Graph Protocol</h1>
-		</div>
-		<div
-			class="col-span-2 row-span-2 rounded-md border border-slate-200 bg-slate-200 dark:border-slate-800 dark:bg-slate-900/50"
-		>
-			<p class="text-center text-sm">
-				Open Graph Protocol (OGP) is a standard that allows web developers to control how their
-				content is displayed when it is shared on social media platforms. OGP is also used to
-				generate awesome looking sms bubbles when shared via iPhone messages.
-			</p>
 		</div>
 	</div>
 </main>
+
+<style>
+	main {
+		width: 100%;
+		max-width: 64rem;
+		margin: 0 auto;
+	}
+</style>
