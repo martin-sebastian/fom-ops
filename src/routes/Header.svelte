@@ -21,8 +21,9 @@
 				<li aria-current={$page.url.pathname === '/' ? 'page' : undefined}>
 					<a class="dark:invert" href="/">Home</a>
 				</li>
-				<li aria-current={$page.url.pathname === '/about' ? 'page' : undefined}>
-					<a class="dark:invert" href="/about">About</a>
+
+				<li aria-current={$page.url.pathname === '/og-demo' ? 'page' : undefined}>
+					<a class="dark:invert" href="/og-demo">OG Demo</a>
 				</li>
 				<li aria-current={$page.url.pathname === '/profile' ? 'page' : undefined}>
 					<a class="dark:invert" href="/profile">Profile</a>

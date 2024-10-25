@@ -10,11 +10,38 @@
 	<title>{vehicle?.title}</title>
 	<meta name="description" content="Svelte demo app" />
 </svelte:head>
+
+<article class="my-10 w-full">
+	<h1 class="mb-4 text-2xl font-bold">{vehicle.title}</h1>
+	<div
+		class="w-screen overflow-x-auto rounded-lg hover:overflow-x-scroll"
+		style="width: 100%; max-width: 3000px; scroll-snap-type: x mandatory;"
+	>
+		{#if vehicle}
+			{#if images && images.length > 0}
+				<div class="inline-flex w-full flex-nowrap">
+					{#each images as image}
+						<img
+							src={image.imageurl}
+							alt={image.alt || 'Vehicle image'}
+							class="m-2 h-auto w-96 rounded-lg"
+						/>
+					{/each}
+				</div>
+			{:else}
+				<p>No images available</p>
+			{/if}
+		{:else}
+			<p>Vehicle not found</p>
+		{/if}
+	</div>
+</article>
+
 <main>
 	{#if vehicle}
-		<h1 class="mb-4 text-2xl font-bold">{vehicle.title}</h1>
 		<div class="grid grid-cols-2 gap-4">
 			<div class="rounded-lg border border-slate-200 p-4 dark:border-slate-800">
+				<h2 class="font-bold">{vehicle.title}</h2>
 				<p><strong>Stock Number:</strong> {vehicle.stock_number}</p>
 				<p><strong>VIN:</strong> {vehicle.vin}</p>
 				<p><strong>Year:</strong> {vehicle.year}</p>
@@ -79,31 +106,6 @@
 		<p>Vehicle not found</p>
 	{/if}
 </main>
-<article class="my-10 w-full">
-	<h2 class="mb-2 mt-6 text-xl font-bold">Vehicle Images</h2>
-	<div
-		class="w-screen overflow-x-hidden rounded-lg hover:overflow-x-scroll"
-		style="width: 100%; max-width: 3000px; scroll-snap-type: x mandatory;"
-	>
-		{#if vehicle}
-			{#if images && images.length > 0}
-				<div class="inline-flex w-full flex-nowrap">
-					{#each images as image}
-						<img
-							src={image.imageurl}
-							alt={image.alt || 'Vehicle image'}
-							class="m-2 h-auto w-96 rounded-lg"
-						/>
-					{/each}
-				</div>
-			{:else}
-				<p>No images available</p>
-			{/if}
-		{:else}
-			<p>Vehicle not found</p>
-		{/if}
-	</div>
-</article>
 
 <style>
 	main {

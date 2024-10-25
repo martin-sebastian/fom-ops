@@ -8,15 +8,16 @@ export const load: PageLoad = async ({ params }) => {
 
 	try {
 		const vehicle = await pb.collection('vehicles').getOne(id, {
-			expand: 'vehicle_images,vehicle_attributes,vehicle_pricing,vehicle_program'
+			expand: 'vehicle_images,vehicle_attributes,vehicle_pricing'
 		});
+
+		console.log('Fetched vehicle:', JSON.stringify(vehicle, null, 2));
 
 		return {
 			vehicle,
 			images: vehicle.expand?.vehicle_images || [],
 			attributes: vehicle.expand?.vehicle_attributes || [],
-			pricing: vehicle.expand?.vehicle_pricing || [],
-			programs: vehicle.expand?.vehicle_program || []
+			pricing: vehicle.expand?.vehicle_pricing || []
 		};
 	} catch (err) {
 		console.error('Error fetching vehicle:', err);

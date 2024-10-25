@@ -2,9 +2,8 @@ import type { PageLoad } from './$types';
 
 export interface Image {
 	id: string;
-	imageurl: string;
+	url: string;
 	name?: string;
-	alt: string;
 }
 
 export interface Attribute {
