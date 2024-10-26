@@ -22,18 +22,22 @@
 					<a class="dark:invert" href="/">Home</a>
 				</li>
 
-				<li aria-current={$page.url.pathname === '/og-demo' ? 'page' : undefined}>
-					<a class="dark:invert" href="/og-demo">OG Demo</a>
-				</li>
 				<li aria-current={$page.url.pathname === '/profile' ? 'page' : undefined}>
 					<a class="dark:invert" href="/profile">Profile</a>
 				</li>
+
+				<li aria-current={$page.url.pathname === '/og-demo' ? 'page' : undefined}>
+					<a class="dark:invert" href="/og-demo">OG Demo</a>
+				</li>
+
 				<li aria-current={$page.url.pathname === '/inventory' ? 'page' : undefined}>
 					<a class="dark:invert" href="/inventory">Inventory</a>
 				</li>
+
 				<li aria-current={$page.url.pathname === '/vehicles' ? 'page' : undefined}>
 					<a class="dark:invert" href="/vehicles">Vehicles</a>
 				</li>
+
 				<li aria-current={$page.url.pathname.startsWith('/parts') ? 'page' : undefined}>
 					<a class="dark:invert" href="/parts">Parts</a>
 				</li>

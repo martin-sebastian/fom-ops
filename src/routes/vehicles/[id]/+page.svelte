@@ -3,7 +3,7 @@
 
 	export let data: PageData;
 
-	$: ({ vehicle, images, attributes, pricing, program } = data);
+	$: ({ vehicle, images, attributes, pricing, programs, programItems } = data);
 </script>
 
 <svelte:head>
@@ -12,7 +12,7 @@
 </svelte:head>
 
 <article class="my-10 w-full">
-	<h1 class="mb-4 text-2xl font-bold">{vehicle.title}</h1>
+	<h1 class="mb-4 text-2xl font-bold">{vehicle?.title}</h1>
 	<div
 		class="w-screen overflow-x-auto rounded-lg hover:overflow-x-scroll"
 		style="width: 100%; max-width: 3000px; scroll-snap-type: x mandatory;"
@@ -22,8 +22,8 @@
 				<div class="inline-flex w-full flex-nowrap">
 					{#each images as image}
 						<img
-							src={image.imageurl}
-							alt={image.alt || 'Vehicle image'}
+							src={image?.imageurl}
+							alt={image?.alt ?? 'Vehicle image'}
 							class="m-2 h-auto w-96 rounded-lg"
 						/>
 					{/each}
@@ -41,6 +41,7 @@
 	{#if vehicle}
 		<div class="grid grid-cols-2 gap-4">
 			<div class="rounded-lg border border-slate-200 p-4 dark:border-slate-800">
+				<h2 class="font-bold">{vehicle.title}</h2>
 				<h2 class="font-bold">{vehicle.title}</h2>
 				<p><strong>Stock Number:</strong> {vehicle.stock_number}</p>
 				<p><strong>VIN:</strong> {vehicle.vin}</p>
@@ -87,11 +88,17 @@
 				{:else}
 					<p>No pricing information available</p>
 				{/if}
-				<h2 class="text-xl font-bold">Program:</h2>
-				{#if program && program.length > 0}
-					{program.name}, {program.value}
+				<h2 class="text-xl font-bold">Program Items:</h2>
+				{#if programItems && programItems.length > 0}
+					<ul>
+						{#each programItems as item}
+							<li>
+								{item.item_type}, {item.item_name}, {item.amount}
+							</li>
+						{/each}
+					</ul>
 				{:else}
-					<p>No program information available</p>
+					<p>No program items available</p>
 				{/if}
 			</div>
 			<div class="flex justify-center rounded-lg border border-slate-200 p-4 dark:border-slate-800">

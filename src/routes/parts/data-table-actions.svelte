@@ -17,11 +17,11 @@
 		<DropdownMenu.Group>
 			<DropdownMenu.Label>Actions</DropdownMenu.Label>
 			<DropdownMenu.Item on:click={() => navigator.clipboard.writeText(id)}>
-				Copy payment ID
+				Copy Part Number
 			</DropdownMenu.Item>
 		</DropdownMenu.Group>
 		<DropdownMenu.Separator />
-		<DropdownMenu.Item>View customer</DropdownMenu.Item>
-		<DropdownMenu.Item>View payment details</DropdownMenu.Item>
+		<DropdownMenu.Item>Edit Part</DropdownMenu.Item>
+		<DropdownMenu.Item>Add Part to Sale Group</DropdownMenu.Item>
 	</DropdownMenu.Content>
 </DropdownMenu.Root>

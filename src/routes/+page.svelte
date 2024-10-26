@@ -36,25 +36,27 @@
 	<meta name="description" content="Svelte demo app" />
 </svelte:head>
 
-<section>
+<section style="min-height: 40vh; display: flex; align-items: center; justify-content: center;">
 	{#if visible}
 		<h1
 			class="bg-gradient-to-r from-primary to-blue-500 bg-clip-text px-5 text-8xl font-bold text-transparent"
 			transition:typewriter
 		>
-			Martin Sebastian. Full Stack Developer. Indianapolis Indiana.
+			Martin Sebastian. Full Stack Developer. Indianapolis, Indiana.
 		</h1>
 	{/if}
-
-	<div class="card invisible my-5 rounded-lg bg-muted p-2">
-		<Counter />
-	</div>
-
+</section>
+<section>
 	<div id="grid" class="grid grid-cols-3 gap-4">
 		<div
 			class="w-64 rounded border border-gray-200 bg-gray-100 p-2 dark:border-gray-800 dark:bg-gray-900"
 		>
-			<svg xmlns="http://www.w3.org/2000/svg" width="107" height="128" viewBox="0 0 107 128"
+			<svg
+				class="float-start mr-2"
+				xmlns="http://www.w3.org/2000/svg"
+				width="107"
+				height="128"
+				viewBox="0 0 107 128"
 				><title>svelte-logo</title><path
 					d="M94.1566,22.8189c-10.4-14.8851-30.94-19.2971-45.7914-9.8348L22.2825,29.6078A29.9234,29.9234,0,0,0,8.7639,49.6506a31.5136,31.5136,0,0,0,3.1076,20.2318A30.0061,30.0061,0,0,0,7.3953,81.0653a31.8886,31.8886,0,0,0,5.4473,24.1157c10.4022,14.8865,30.9423,19.2966,45.7914,9.8348L84.7167,98.3921A29.9177,29.9177,0,0,0,98.2353,78.3493,31.5263,31.5263,0,0,0,95.13,58.117a30,30,0,0,0,4.4743-11.1824,31.88,31.88,0,0,0-5.4473-24.1157"
 					style="fill:#ff3e00"
@@ -63,20 +65,37 @@
 					style="fill:#fff"
 				/></svg
 			>
+			<p class="text-left text-sm">
+				Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
+			</p>
 		</div>
 		<div
 			class="w-64 rounded border border-gray-200 bg-gray-100 p-2 dark:border-gray-800 dark:bg-gray-900"
 		>
-			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+			<svg
+				class="float-start mr-2"
+				width="128"
+				height="128"
+				xmlns="http://www.w3.org/2000/svg"
+				viewBox="0 0 24 24"
+				fill="currentColor"
 				><path
 					d="M11.9996 4.85999C8.82628 4.85999 6.84294 6.44665 6.04961 9.61999C7.23961 8.03332 8.62794 7.43832 10.2146 7.83499C11.12 8.06109 11.7666 8.71757 12.4835 9.44545C13.6507 10.6295 15.0004 12 17.9496 12C21.1229 12 23.1063 10.4133 23.8996 7.23998C22.7096 8.82665 21.3213 9.42165 19.7346 9.02499C18.8292 8.79889 18.1827 8.1424 17.4657 7.41452C16.2995 6.23047 14.9498 4.85999 11.9996 4.85999ZM6.04961 12C2.87628 12 0.892943 13.5867 0.0996094 16.76C1.28961 15.1733 2.67794 14.5783 4.26461 14.975C5.17 15.2011 5.81657 15.8576 6.53354 16.5855C7.70073 17.7695 9.05039 19.14 11.9996 19.14C15.1729 19.14 17.1563 17.5533 17.9496 14.38C16.7596 15.9667 15.3713 16.5617 13.7846 16.165C12.8792 15.9389 12.2326 15.2824 11.5157 14.5545C10.3495 13.3705 8.99982 12 6.04961 12Z"
 				></path></svg
 			>
+			<p class="text-left text-sm">
+				Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
+			</p>
 		</div>
 		<div
 			class="w-64 rounded border border-gray-200 bg-gray-100 p-2 dark:border-gray-800 dark:bg-gray-900"
 		>
-			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" class="h-6 w-6"
+			<svg
+				class="float-start mr-2"
+				xmlns="http://www.w3.org/2000/svg"
+				viewBox="0 0 256 256"
+				height="128"
+				width="128"
 				><rect width="256" height="256" fill="none"></rect><line
 					x1="208"
 					y1="128"
@@ -99,11 +118,19 @@
 					stroke-width="16"
 				></line></svg
 			>
+			<p class="text-left text-sm">
+				Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
+			</p>
 		</div>
 		<div
 			class="col-span-2 rounded border border-gray-200 bg-gray-100 p-2 dark:border-gray-800 dark:bg-gray-900"
 		>
-			<svg xmlns="http://www.w3.org/2000/svg" width="107" height="128" viewBox="0 0 107 128"
+			<svg
+				class="float-start mr-2"
+				xmlns="http://www.w3.org/2000/svg"
+				width="107"
+				height="128"
+				viewBox="0 0 107 128"
 				><title>svelte-logo</title><path
 					d="M94.1566,22.8189c-10.4-14.8851-30.94-19.2971-45.7914-9.8348L22.2825,29.6078A29.9234,29.9234,0,0,0,8.7639,49.6506a31.5136,31.5136,0,0,0,3.1076,20.2318A30.0061,30.0061,0,0,0,7.3953,81.0653a31.8886,31.8886,0,0,0,5.4473,24.1157c10.4022,14.8865,30.9423,19.2966,45.7914,9.8348L84.7167,98.3921A29.9177,29.9177,0,0,0,98.2353,78.3493,31.5263,31.5263,0,0,0,95.13,58.117a30,30,0,0,0,4.4743-11.1824,31.88,31.88,0,0,0-5.4473-24.1157"
 					style="fill:#ff3e00"
@@ -112,11 +139,19 @@
 					style="fill:#fff"
 				/></svg
 			>
+			<p class="text-left text-sm">
+				Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
+			</p>
 		</div>
 		<div
 			class="w-64 rounded border border-gray-200 bg-gray-100 p-2 dark:border-gray-800 dark:bg-gray-900"
 		>
-			<svg xmlns="http://www.w3.org/2000/svg" width="107" height="128" viewBox="0 0 107 128"
+			<svg
+				class="float-start mr-2"
+				xmlns="http://www.w3.org/2000/svg"
+				width="107"
+				height="128"
+				viewBox="0 0 107 128"
 				><title>svelte-logo</title><path
 					d="M94.1566,22.8189c-10.4-14.8851-30.94-19.2971-45.7914-9.8348L22.2825,29.6078A29.9234,29.9234,0,0,0,8.7639,49.6506a31.5136,31.5136,0,0,0,3.1076,20.2318A30.0061,30.0061,0,0,0,7.3953,81.0653a31.8886,31.8886,0,0,0,5.4473,24.1157c10.4022,14.8865,30.9423,19.2966,45.7914,9.8348L84.7167,98.3921A29.9177,29.9177,0,0,0,98.2353,78.3493,31.5263,31.5263,0,0,0,95.13,58.117a30,30,0,0,0,4.4743-11.1824,31.88,31.88,0,0,0-5.4473-24.1157"
 					style="fill:#ff3e00"
@@ -125,11 +160,19 @@
 					style="fill:#fff"
 				/></svg
 			>
+			<p class="text-left text-sm">
+				Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
+			</p>
 		</div>
 		<div
 			class="w-64 rounded border border-gray-200 bg-gray-100 p-2 dark:border-gray-800 dark:bg-gray-900"
 		>
-			<svg xmlns="http://www.w3.org/2000/svg" width="107" height="128" viewBox="0 0 107 128"
+			<svg
+				class="float-start mr-2"
+				xmlns="http://www.w3.org/2000/svg"
+				width="107"
+				height="128"
+				viewBox="0 0 107 128"
 				><title>svelte-logo</title><path
 					d="M94.1566,22.8189c-10.4-14.8851-30.94-19.2971-45.7914-9.8348L22.2825,29.6078A29.9234,29.9234,0,0,0,8.7639,49.6506a31.5136,31.5136,0,0,0,3.1076,20.2318A30.0061,30.0061,0,0,0,7.3953,81.0653a31.8886,31.8886,0,0,0,5.4473,24.1157c10.4022,14.8865,30.9423,19.2966,45.7914,9.8348L84.7167,98.3921A29.9177,29.9177,0,0,0,98.2353,78.3493,31.5263,31.5263,0,0,0,95.13,58.117a30,30,0,0,0,4.4743-11.1824,31.88,31.88,0,0,0-5.4473-24.1157"
 					style="fill:#ff3e00"
@@ -138,11 +181,19 @@
 					style="fill:#fff"
 				/></svg
 			>
+			<p class="text-left text-sm">
+				Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
+			</p>
 		</div>
 		<div
 			class="col-span-2 rounded border border-gray-200 bg-gray-100 p-2 dark:border-gray-800 dark:bg-gray-900"
 		>
-			<svg xmlns="http://www.w3.org/2000/svg" width="107" height="128" viewBox="0 0 107 128"
+			<svg
+				class="float-start mr-2"
+				xmlns="http://www.w3.org/2000/svg"
+				width="107"
+				height="128"
+				viewBox="0 0 107 128"
 				><title>svelte-logo</title><path
 					d="M94.1566,22.8189c-10.4-14.8851-30.94-19.2971-45.7914-9.8348L22.2825,29.6078A29.9234,29.9234,0,0,0,8.7639,49.6506a31.5136,31.5136,0,0,0,3.1076,20.2318A30.0061,30.0061,0,0,0,7.3953,81.0653a31.8886,31.8886,0,0,0,5.4473,24.1157c10.4022,14.8865,30.9423,19.2966,45.7914,9.8348L84.7167,98.3921A29.9177,29.9177,0,0,0,98.2353,78.3493,31.5263,31.5263,0,0,0,95.13,58.117a30,30,0,0,0,4.4743-11.1824,31.88,31.88,0,0,0-5.4473-24.1157"
 					style="fill:#ff3e00"
@@ -151,6 +202,12 @@
 					style="fill:#fff"
 				/></svg
 			>
+			<p class="text-left text-sm">
+				Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.
+			</p>
+			<div class="card my-5 flex flex-col items-center justify-center rounded-lg bg-muted p-2">
+				<Counter />
+			</div>
 		</div>
 	</div>
 </section>
