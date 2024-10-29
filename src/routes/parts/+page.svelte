@@ -2,6 +2,6 @@
 	import DataTable from './data-table.svelte';
 </script>
 
-<div class="container mx-auto py-10">
-	<DataTable />
-</div>
+<h1 class="py-4 text-5xl font-bold">Parts</h1>
+
+<DataTable />
